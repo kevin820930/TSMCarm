@@ -5,19 +5,20 @@
 #include <math.h>
 #include <unistd.h>
 #include <assert.h>
-
 #include "straight.h"
-#define alongbase 5
-#define alongrate2 0.64
-#define alongrate3 0.5656
-#define movelong 1.414
+
+//Following are the data you need to key in.
+#define armbaselong 5
+#define axis2rate 0.64
+#define axis3rate 0.5656
+#define distance 1.414
 #define origx 0
 #define origy 0
 #define endx -6
 #define endy 3
 #define endvectorx -1;
 #define endvectory 1; 
-
+//ending of key in
 int main(){
 
     point *orig,*endaxis;
@@ -34,11 +35,11 @@ int main(){
     endaxis->ypoint=endy;
     testarm->vector[0]=endvectorx;
     testarm->vector[1]=endvectory;
-    testarm->longbase=alongbase;
-    testarm->longrate2=alongrate2;
-    testarm->longrate3=alongrate3;
+    testarm->longbase=armbaselong;
+    testarm->longrate2=axis2rate;
+    testarm->longrate3=axis3rate;
 
-    calcu(orig,endaxis,testarm,movelong);
+    calcu(orig,endaxis,testarm,distance);
 
     return 0;
 

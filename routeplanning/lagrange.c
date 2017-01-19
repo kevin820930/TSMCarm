@@ -18,8 +18,4 @@ int main(){
 
     lagrange(data,time);
 
-
-
-
-
 }
