@@ -5,14 +5,13 @@
 #include <math.h>
 
 #include "straight.h"
-#define npart 100
+#define npart 10
 #define scale 1 // scale 1:?(m)
 
 point calcu(point *orig,point *endaxis,arm *myarm,double distance){
     
     int count=0;
     double pi=3.14159265359;
-    void *move(motor mymotor);
     double angleE_O,angleB_O,angleorig1,angleorig2,angleorig3,angleafter1,angleafter2,angleafter3;
     double moveangle1,moveangle2,moveangle3;
     double totalmove1=0,totalmove2=0,totallong=0;
@@ -36,8 +35,8 @@ point calcu(point *orig,point *endaxis,arm *myarm,double distance){
     partmovey=(endvector[1]/(sqrt(endvector[0]*endvector[0]+endvector[1]*endvector[1])))*partdistance;
 
     FILE *fp,*fpspace;
-    fp=fopen("moveangle","w");
-    fpspace=fopen("movespace","w");
+    fp=fopen("moveangle.txt","w");
+    //fpspace=fopen("movespace","w");
 
     for(count=0;count<npart;count++){
         firstvector[0]=endx-origx;
@@ -68,8 +67,8 @@ point calcu(point *orig,point *endaxis,arm *myarm,double distance){
         //the need of angle move
         moveangle1=angleafter1-angleorig1;
         moveangle2=angleafter2-angleorig2;
-        fprintf(fp,"%f,%f\n",angleafter1*(180/pi),angleafter2*(180/pi));
-        fprintf(fpspace,"%f %f\n",angleafter1*(180/pi),angleafter2*(180/pi));
+        fprintf(fp,"%f,%f \n",angleafter1*(180/pi),angleafter2*(180/pi));
+        //fprintf(fpspace,"%f %f\n",angleafter1*(180/pi),angleafter2*(180/pi));
         
         totalmove1+=moveangle1;
         totalmove2+=moveangle2;
@@ -82,12 +81,7 @@ point calcu(point *orig,point *endaxis,arm *myarm,double distance){
 
         
     fclose(fp);
-    fclose(fpspace);
+    //fclose(fpspace);
     return *orig;
 }
 
-
-
-void *move(motor mymotor){
-;
-}

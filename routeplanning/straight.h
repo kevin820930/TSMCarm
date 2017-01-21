@@ -22,7 +22,7 @@ typedef struct MOTOR {
 } motor;
 
 point calcu(point *orig,point *endaxis,arm *myarm,double  distance);
-void *move(motor mymotor);
+
 
 #endif
 
