@@ -48,14 +48,61 @@ void routplanning(double armbaselong,double axis2rate,double axis3rate,double di
 
     sleep(1);
 
-    FILE *fp;
-    fp=fopen("moveangle.txt","r");
+/*    FILE *fp;
+    char readdata[100];
+    int i=0,a=0;
+    int mid=0,end=0;
+    char first[40],second[40];
+    int linenum=0;
     long double data[10][2];
     int time=10;
 
     
-
-    lagrange(data,time);
-
+    for(i=0;i<100;i++){
+	readdata[i]='\0';
+    }
+    for(i=0;i<40;i++){
+	first[i]=0;
+	second[i]=0;
+    }
     
+    fp=fopen("moveangle.txt","r");
+    while(fgets(readdata,sizeof(readdata),fp)){
+	for(i=0;readdata[i]!=' ';i++){
+	    if(readdata[i]==','){
+		mid=i;
+	    }
+	}
+	end=i;
+	for(a=0;a<mid;a++){
+            first[a]=readdata[a];
+        }
+	data[linenum][0]=atof(first);
+
+        for(i=0,a=(mid+1);a<end;a++,i++){
+	    second[i]=readdata[a];
+	}
+	data[linenum][1]=atof(second);
+
+	for(i=0;i<100;i++){
+        readdata[i]='\0';
+        }
+        for(i=0;i<40;i++){
+            first[i]=0;
+            second[i]=0;
+        }
+        linenum++;
+    }
+*/
+
+    long double data[10][2];
+    int time=10;
+    int i,j;
+    for(i=0;i<time;i++){
+        data[i][0]=1.52*((i)*(i+1));
+        data[i][1]=1.44*((i)*2+1);
+    }
+   
+    lagrange(data,time);
+   
 }
