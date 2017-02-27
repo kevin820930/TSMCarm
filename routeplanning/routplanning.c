@@ -48,13 +48,13 @@ void routplanning(double armbaselong,double axis2rate,double axis3rate,double di
 
     sleep(1);
 
-/*    FILE *fp;
+    FILE *fp;
     char readdata[100];
     int i=0,a=0;
     int mid=0,end=0;
     char first[40],second[40];
     int linenum=0;
-    long double data[10][2];
+    long double data[100][2];
     int time=10;
 
     
@@ -93,16 +93,17 @@ void routplanning(double armbaselong,double axis2rate,double axis3rate,double di
         }
         linenum++;
     }
-*/
+
 
     long double data[10][2];
     int time=10;
     int i,j;
     for(i=0;i<time;i++){
-        data[i][0]=1.52*((i)*(i+1));
-        data[i][1]=1.44*((i)*2+1);
+        data[i][0]=i*i*i*i*i*i*i*i*i*4.1544444549561;
+        data[i][1]=1.2564564*i*2.454517945412145114;
     }
    
     lagrange(data,time);
    
 }
+

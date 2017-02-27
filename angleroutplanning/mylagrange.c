@@ -8,9 +8,9 @@
 
 void lagrange(long double indata[][2],int time){
 
-    long double ans=0;
+    long double ans=0,tmp=0;
     long double finalanser[100];
-    int tmp,i,j,power,choicenum;
+    int i,j,power=0,choicenum;
     int havechoice[100];
     long double L0[100];
     choicenum=0;
@@ -54,26 +54,17 @@ void lagrange(long double indata[][2],int time){
     }
     printf("\n");
 
-    for(i=0;i<time;i++){
-        tmp=1;
-        for(j=1;j<=i;j++){
-            tmp=tmp*j;
-        }
-        finalanser[i]=finalanser[i]/tmp;
-    }
-
     printf("f(x)=");
     for(i=0;i<time;i++){
 	printf("%Lfx^%d",finalanser[i],time-i-1);
 	if(i!=time-1 && finalanser[i+1]>=0){
-	    printf("+");
+	        printf("+");
 	}
     }
     printf("\n");
     for(i=0;i<time;i++){
 	for(j=0;j<time;j++){
             ans=ans+finalanser[j]*(pow(indata[i][0],(time-j-1)));
-	    //printf("%Lf,%d,%Lf\n",indata[i][0],(time-j-1),finalanser[j]*(pow(indata[i][0],(time-j-1))));
 	}
 	printf("y: %Lf=%Lf\n",indata[i][1],ans);
         ans=0;
@@ -85,7 +76,13 @@ void calculate(long double indata[][2],int time,int havechoice[100],long double 
     int i=0,j=0;
     int count=0;
     if(choicenum!=time+1){
-        for(i=0;i<time;i++){
+	if(choicenum==0 || choicenum==1){
+	    i=0;
+	}
+	else{
+	    i=havechoice[choicenum-1]+1;
+	}
+        for(;i<time;i++){
             for(j=0;j<choicenum;j++){ //ensure choice no repeat
 	        if(i==havechoice[j]){
 		    flag=0;
