@@ -21,7 +21,7 @@ motor calcu(arm *armdata,motor *origangle,double distance,int pointsnum){
     double angle3=(origangle->motor3angle)*pi/180;
     double angle4=(origangle->motor4angle)*pi/180;
 
-    printf("initial %f,%f,%f\n",origangle->motor1angle,origangle->motor3angle,origangle->motor4angle);
+    printf("initial angle of 1,3,4:%f,%f,%f\n",origangle->motor1angle,origangle->motor3angle,origangle->motor4angle);
 
     double tmpangle1,tmpangle7,tmpangle8,tmpangle4,tmpangle2,tmpangle9,tmpangle6;    
     double tmpline1;//origangle2,arm1,arm2
@@ -32,15 +32,15 @@ motor calcu(arm *armdata,motor *origangle,double distance,int pointsnum){
 
     FILE *fp;
     fp=fopen("moveangle.txt\0","w");
-
+/*
     //check if the distance is able to move
     tmpline1=pow(arm1long,2)+pow(arm2long,2)-2*arm1long*arm2long*cos(angle3);
     tmpline1=sqrt(tmpline1);
     if(distance>(arm1long+arm2long)-tmpline1){
 	printf("the distance is too long,the longest distance is %f\n",tmpline1);
-	return *origangle;
     }
     //
+*/
     for(count=0;count<pointsnum;count++){
 
         tmpline1=pow(arm1long,2)+pow(arm2long,2)-2*arm1long*arm2long*cos(angle3);
@@ -70,7 +70,7 @@ motor calcu(arm *armdata,motor *origangle,double distance,int pointsnum){
 
         afterangle4=pi-(pi-tmpangle4-tmpangle6)-(pi-afterangle3-tmpangle9);
     
-        printf("angle1:%f ,angle3:%f ,angle4:%f \n",afterangle1*180/pi,afterangle3*180/pi,afterangle4*180/pi);
+        //printf("angle1:%f ,angle3:%f ,angle4:%f \n",afterangle1*180/pi,afterangle3*180/pi,afterangle4*180/pi);
         fprintf(fp,"%f,%f \n",afterangle1*180/pi,afterangle3*180/pi);    
 
         angle1=afterangle1;

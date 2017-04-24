@@ -5,8 +5,9 @@
 #include <math.h>
 
 #include "mylagrange.h"
+#include "routplanning.h"
 
-void lagrange(long double indata[][2],int time){
+rout lagrange(long double indata[][2],int time,rout *routpoly){
 
     long double ans=0,tmp=0;
     long double finalanser[100];
@@ -26,16 +27,15 @@ void lagrange(long double indata[][2],int time){
         L0[i]=1;
         finalanser[i]=0;
     }
-
-    printf("initial:\n");
+/*
+    printf("initial :\n");
     for(i=0;i<time;i++){
         for(j=0;j<2;j++){
             printf("%Lf ",indata[i][j]);
         }
         printf("\n");
     }
-    printf("\n");
-
+*/
     calculate(indata,time,havechoice,anser,choicenum);
 
     for(i=0;i<time;i++){
@@ -52,16 +52,16 @@ void lagrange(long double indata[][2],int time){
 	    finalanser[i]=finalanser[i]+((anser[j][i]*indata[j][1])/L0[j]);
 	}
     }
-    printf("\n");
-
     printf("f(x)=");
     for(i=0;i<time;i++){
 	printf("%Lfx^%d",finalanser[i],time-i-1);
 	if(i!=time-1 && finalanser[i+1]>=0){
 	        printf("+");
 	}
+	routpoly->polynomial[time-i-1]=finalanser[i];
     }
     printf("\n");
+/*
     for(i=0;i<time;i++){
 	for(j=0;j<time;j++){
             ans=ans+finalanser[j]*(pow(indata[i][0],(time-j-1)));
@@ -69,6 +69,7 @@ void lagrange(long double indata[][2],int time){
 	printf("y: %Lf=%Lf\n",indata[i][1],ans);
         ans=0;
     }
+*/
 }
 
 void calculate(long double indata[][2],int time,int havechoice[100],long double anser[100][100],int choicenum){
